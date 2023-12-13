@@ -1,0 +1,13 @@
+# Environment
+.micromamba
+
+# Python
+__pycache__
+.pytest_cache
+
+# Data
+raw
+*.csv
+
+# VSCode
+.vscode
