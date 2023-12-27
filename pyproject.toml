@@ -1,0 +1,53 @@
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "dataset_baselines"
+version = "0.1.0"
+description = "Benchmark datasets and experiments"
+licence = "MIT"
+authors = ["Laurits Fredsgaard Larsen <laula@dtu.dk>"]
+packages = [{ include = "dataset_baselines", from = "." }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = "^2.0"                                  # Installs cuda version if available
+lightning = "^2.0"
+scipy = "*"
+pandas = "^2.0"
+xlrd = "*"                                      # for pandas.read_excel (format='xls')
+openpyxl = "*"                                  # for pandas.read_excel (format='xlsx')
+tensorboard = "*"
+requests = "*"
+pytest = { version = "*", optional = true }
+ruff = { version = "*", optional = true }
+pre-commit = { version = "*", optional = true }
+
+[tool.poetry.extras]
+dev = ["pytest", "ruff", "pre-commit"]
+
+[tool.ruff]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+    "UP", # pyupgrade
+]
+line-length = 120
+
+[tool.pytest.ini_options]
+addopts = ["--color=yes"]
+log_cli = "True"
+markers = ["slow: slow tests", "gpu: gpu tests"]
+testpaths = ["tests"]
+filterwarnings = [
+    # Revisist at a later point: https://github.com/Lightning-AI/torchmetrics/pull/2153
+    "ignore:Deprecated call to `pkg_resources.declare_namespace\\('lightning'\\)`:DeprecationWarning:pkg_resources.*",
+    "ignore:pkg_resources is deprecated as an API:DeprecationWarning:lightning_utilities.core.imports.*",
+    "ignore:Deprecated call to `pkg_resources.declare_namespace\\('lightning.fabric'\\)`:DeprecationWarning:lightning.fabric.*",
+    "ignore:Deprecated call to `pkg_resources.declare_namespace\\('lightning.pytorch'\\)`:DeprecationWarning:lightning.pytorch.*",
+]

@@ -1,13 +1,13 @@
 # Environment
 .micromamba
+.venv
 
 # Python
 __pycache__
 .pytest_cache
 
 # Data
-raw
-*.csv
+data/*/
 
 # VSCode
 .vscode
