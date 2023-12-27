@@ -86,7 +86,7 @@ def process_dataset(dataset_name: str, data_spec: DataSpec, data_dir: Path) -> P
 
     if data_spec.file_in_zip:
         with zipfile.ZipFile(raw_dataset_file, "r") as zip_ref:
-            raw_dataset_file = zip_ref.extract(data_spec.file_in_zip, raw_dataset_file.parent)
+            raw_dataset_file = Path(zip_ref.extract(data_spec.file_in_zip, raw_dataset_file.parent))
 
     if data_spec.preprocess:
         preprocess_function = globals()[data_spec.preprocess]
