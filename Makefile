@@ -31,3 +31,9 @@ test-full: ## Run all tests
 sync: ## Merge changes from main branch to your current branch
 	git pull
 	git pull origin main
+
+install: ## Install dependencies
+	pip install .
+
+install-dev: ## Install dev dependencies (for development)
+	pip install -e ."[dev]"
