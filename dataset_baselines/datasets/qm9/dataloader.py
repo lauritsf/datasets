@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import torch
 import numpy as np
 import pytorch_lightning as pl
@@ -44,7 +46,7 @@ class QM9DataModule(pl.LightningDataModule):
     ) -> None:
         super().__init__()
         self.target = target
-        self.data_dir = data_dir
+        self.data_dir = Path(data_dir) / 'qm9'
         self.batch_size_train = batch_size_train
         self.batch_size_inference = batch_size_inference
         self.num_workers = num_workers
