@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "dataset_baselines"
-version = "0.1.0"
+version = "0.1.1"
 description = "Benchmark datasets and experiments"
 licence = "MIT"
 authors = ["Laurits Fredsgaard Larsen <laula@dtu.dk>"]
@@ -18,8 +18,12 @@ scipy = "*"
 pandas = "^2.0"
 xlrd = "*"                                      # for pandas.read_excel (format='xls')
 openpyxl = "*"                                  # for pandas.read_excel (format='xlsx')
+scikit-learn = "*"
 tensorboard = "*"
 requests = "*"
+matplotlib = "*"
+seaborn = "*"
+tabulate = "*"                                  # for printing tables as markdown
 pytest = { version = "*", optional = true }
 ruff = { version = "*", optional = true }
 pre-commit = { version = "*", optional = true }

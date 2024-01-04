@@ -42,3 +42,27 @@ def test_get_datamodule(name):
     assert datamodule.data_train is not None
     assert datamodule.data_val is not None
     assert datamodule.data_test is not None
+
+
+# Test that the setup function returns the same split for the same seed
+@pytest.mark.slow
+@pytest.mark.parametrize("name", load_dataset_specs().keys())
+def test_get_datamodule_setup(name):
+    datamodule1 = get_datamodule(name, seed=42)
+    datamodule1.prepare_data()
+    datamodule1.setup()
+    datamodule2 = get_datamodule(name, seed=42)
+    datamodule2.prepare_data()
+    datamodule2.setup()
+    datamodule2.setup()  # Call setup twice to ensure that it does not change the split
+
+    assert datamodule1.data_train is not None
+    assert datamodule1.data_val is not None
+    assert datamodule1.data_test is not None
+    assert datamodule2.data_train is not None
+    assert datamodule2.data_val is not None
+    assert datamodule2.data_test is not None
+
+    assert datamodule1.data_train.indices == datamodule2.data_train.indices
+    assert datamodule1.data_val.indices == datamodule2.data_val.indices
+    assert datamodule1.data_test.indices == datamodule2.data_test.indices

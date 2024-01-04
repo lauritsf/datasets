@@ -11,6 +11,7 @@ def get_datamodule(
     batch_size: int = 64,
     num_workers: int = 0,
     pin_memory: bool = False,
+    seed: int | None = None,  # Set seed for reproducible splits
 ) -> UciDataModule:
     """Get a UCI dataset as a PyTorch Lightning DataModule.
 
@@ -21,6 +22,7 @@ def get_datamodule(
         batch_size: Batch size.
         num_workers: Number of workers for the DataLoader.
         pin_memory: Pin memory for the DataLoader.
+        seed: Set seed for reproducible splits.
 
     Returns:
         A PyTorch Lightning DataModule.
@@ -32,4 +34,5 @@ def get_datamodule(
         batch_size=batch_size,
         num_workers=num_workers,
         pin_memory=pin_memory,
+        seed=seed,
     )

@@ -148,8 +148,8 @@ class UciDataset(Dataset):
             df = df.drop(columns=self.spec.exclude)
 
         # Split into data and label
-        data = torch.tensor(df.drop(columns=[self.spec.label]).values, dtype=torch.float)
-        label = torch.tensor(df[self.spec.label].values, dtype=torch.float)
+        data = torch.FloatTensor(df.drop(columns=[self.spec.label]).values)
+        label = torch.FloatTensor(df[self.spec.label].values)
         # Ensure that label is 2D
         if len(label.shape) == 1:
             label = label.unsqueeze(1)
