@@ -37,7 +37,7 @@ class QM9DataModule(pl.LightningDataModule):
         batch_size_train: int = 32,
         batch_size_inference: int = 32,
         num_workers: int = 0,
-        splits: Union[List[int], List[float]] = [0.8, 0.1, 0.1],
+        splits: Union[List[int], List[float]] | None = None,  # default: [0.8, 0.1, 0.1]
         seed: int = 0,
         subset_size: Optional[int] = None,
     ) -> None:
@@ -47,7 +47,7 @@ class QM9DataModule(pl.LightningDataModule):
         self.batch_size_train = batch_size_train
         self.batch_size_inference = batch_size_inference
         self.num_workers = num_workers
-        self.splits = splits
+        self.splits = [0.8, 0.1, 0.1] if splits is None else splits
         self.seed = seed
         self.subset_size = subset_size
 
@@ -71,9 +71,9 @@ class QM9DataModule(pl.LightningDataModule):
             dataset = dataset[: self.subset_size]
 
         # Split dataset
-        if all([type(split) == int for split in self.splits]):
+        if all(isinstance(split, int) for split in self.splits):
             split_sizes = self.splits
-        elif all([type(split) == float for split in self.splits]):
+        elif all(isinstance(split, float) for split in self.splits):
             split_sizes = [int(len(dataset) * prop) for prop in self.splits]
 
         split_idx = np.cumsum(split_sizes)
@@ -84,7 +84,7 @@ class QM9DataModule(pl.LightningDataModule):
     def get_target_stats(self, remove_atom_refs=False, divide_by_atoms=False):
         atom_refs = self.data_train.atomref(self.target)
 
-        ys = list()
+        ys = []
         for batch in self.train_dataloader(shuffle=False):
             y = batch.y.clone()
             if remove_atom_refs and atom_refs is not None:

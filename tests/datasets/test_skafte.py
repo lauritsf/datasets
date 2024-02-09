@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from dataset_baselines.datasets.skafte import SkafteDataset
+from dataset_baselines.datasets.skafte.dataset import SkafteDataset
 
 
 class TestSkafteDataset:
