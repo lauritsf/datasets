@@ -9,3 +9,7 @@ The UCI directory contains datasets from the UCI Machine Learning Repository. Fo
 ## QM9
 
 The QM9 dataset consists quantum checmistry structures and properties of 134k molecules. For more information, see the [QM9 README](dataset_baselines/datasets/qm9/README.md).
+
+## Skafte
+
+The Skafte toy dataset consists of a simple 1D regression problem. For more information, see the [Skafte README](dataset_baselines/datasets/skafte/README.md).
