@@ -1,10 +1,15 @@
-import torch.distributions as td
 import torch
 from torch.utils.data import Dataset
 
 
 class SkafteDataset(Dataset):
-    def __init__(self, num_samples: int = 1000, heteroscedastic: bool = True, x_bounds: tuple[float] = (2.5, 12.5), seed: int | None = None):
+    def __init__(
+        self,
+        num_samples: int = 1000,
+        heteroscedastic: bool = True,
+        x_bounds: tuple[float] = (2.5, 12.5),
+        seed: int | None = None,
+    ):
         super().__init__()
 
         if len(x_bounds) != 2:
@@ -30,10 +35,10 @@ class SkafteDataset(Dataset):
             return scale
         else:
             return scale.mean()
-    
+
     def __len__(self):
         return self.num_samples
-    
+
     def __getitem__(self, idx):
         return self.x[idx], self.y[idx]
 

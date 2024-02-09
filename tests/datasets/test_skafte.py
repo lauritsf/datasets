@@ -3,6 +3,7 @@ import torch
 
 from dataset_baselines.datasets.skafte import SkafteDataset
 
+
 class TestSkafteDataset:
     @pytest.mark.parametrize("num_samples", [1, 10, 100])
     @pytest.mark.parametrize("heteroscedastic", [True, False])
@@ -17,7 +18,6 @@ class TestSkafteDataset:
         # Assert all x values are within bounds
         assert (x >= x_bounds[0]).all()
         assert (x <= x_bounds[1]).all()
-
 
     def test_x_bounds(self):
         with pytest.raises(ValueError):
