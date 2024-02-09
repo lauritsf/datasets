@@ -1,6 +1,6 @@
 import pytest
 
-from dataset_baselines.datasets.qm9 import QM9DataModule
+from dataset_baselines.datasets.qm9.datamodule import QM9DataModule
 
 
 @pytest.mark.slow
@@ -31,5 +31,3 @@ def test_datamoudle_dataloaders(target):
     next(iter(dm.train_dataloader()))
     next(iter(dm.val_dataloader()))
     next(iter(dm.test_dataloader()))
-
-
