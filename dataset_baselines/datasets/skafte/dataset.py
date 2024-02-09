@@ -7,7 +7,7 @@ class SkafteDataset(Dataset):
         self,
         num_samples: int = 1000,
         heteroscedastic: bool = True,
-        x_bounds: tuple[float] = (2.5, 12.5),
+        x_bounds: tuple[float, float] = (2.5, 12.5),
         seed: int | None = None,
     ):
         super().__init__()
