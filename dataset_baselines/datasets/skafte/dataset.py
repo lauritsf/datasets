@@ -40,7 +40,10 @@ class SkafteDataset(Dataset):
         return self.num_samples
 
     def __getitem__(self, idx):
-        return self.x[idx], self.y[idx]
+        x = self.x[idx].unsqueeze(-1)
+        y = self.y[idx].unsqueeze(-1)
+        return x, y
+
 
 
 if __name__ == "__main__":
