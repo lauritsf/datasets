@@ -1,1 +1,1 @@
-__ALL__ = ["SkafeDataset"]
+__ALL__ = ["SkafteDataset"]
