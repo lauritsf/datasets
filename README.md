@@ -8,7 +8,7 @@ See [dataset_baselines/baseline_experiments/README.md](dataset_baselines/baselin
 
 ## Installation
 
-Requires Python 3.11+.
+Requires Python 3.10 or later and pytorch 1.13.1 or later.
 
 To install the current version of the package, run:
 
@@ -24,7 +24,7 @@ cd datasets
 pip install -e ."[dev]"
 ```
 
+## License
 
-# License
 This project is licensed under the [MIT License](LICENSE).
 Individual datasets may have their own licenses, see the respective dataset folder for more information.
