@@ -10,6 +10,9 @@ jobs:
   test-on-push:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        torch-version: ["1.13.1", ">=2.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -17,13 +20,19 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - run: pip install -e ".[dev]"
+      - name: Install PyTorch
+        run: pip install torch==${{ matrix.torch-version }}
+      - name: Install package
+        run: pip install -e ".[dev]"
       - name: Run tests (excluding slow tests)
         run: pytest -k "not slow"
 
   test-on-pull-request:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        torch-version: ["1.13.1", ">=2.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -31,6 +40,8 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+      - name: Install PyTorch
+        run: pip install torch==${{ matrix.torch-version }}
       - run: pip install -e ".[dev]"
       - name: Run all tests
         run: pytest
