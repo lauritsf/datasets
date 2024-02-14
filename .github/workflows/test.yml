@@ -12,13 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        python-version: ["3.11", "3.10"]
         torch-version: ["torch==1.13.1", "torch>=2.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
           cache: "pip"
       - name: Install package and dependencies
         run: pip install ".[dev]" ${{ matrix.torch-version }}
@@ -30,13 +31,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        python-version: ["3.11", "3.10"]
         torch-version: ["torch==1.13.1", "torch>=2.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
           cache: "pip"
       - name: Install package and dependencies
         run: pip install ".[dev]" ${{ matrix.torch-version }}

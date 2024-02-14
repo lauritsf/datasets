@@ -14,7 +14,7 @@ authors = [
 packages = [{ include = "dataset_baselines", from = "." }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.11 || ^3.10"
 torch = "^1.13 || >=2.0"                        # Installs cuda version if available
 torch-geometric = "^2.0"
 lightning = "^2.0"
