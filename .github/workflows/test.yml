@@ -20,10 +20,8 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - name: Install PyTorch
-        run: pip install ${{ matrix.torch-version }}
-      - name: Install package
-        run: pip install ".[dev]"
+      - name: Install package and dependencies
+        run: pip install ".[dev]" ${{ matrix.torch-version }}
       - name: Run tests (excluding slow tests)
         run: pytest -k "not slow"
 
@@ -40,8 +38,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - name: Install PyTorch
-        run: pip install ${{ matrix.torch-version }}
-      - run: pip install ".[dev]"
+      - name: Install package and dependencies
+        run: pip install ".[dev]" ${{ matrix.torch-version }}
       - name: Run all tests
         run: pytest
