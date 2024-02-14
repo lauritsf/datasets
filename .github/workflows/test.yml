@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        torch-version: ["1.13.1", ">=2.0"]
+        torch-version: ["torch==1.13.1", "torch>=2.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
           cache: "pip"
       - name: Install PyTorch
-        run: pip install torch==${{ matrix.torch-version }}
+        run: pip install ${{ matrix.torch-version }}
       - name: Install package
         run: pip install -e ".[dev]"
       - name: Run tests (excluding slow tests)
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        torch-version: ["1.13.1", ">=2.0"]
+        torch-version: ["torch==1.13.1", "torch>=2.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -41,7 +41,7 @@ jobs:
           python-version: "3.11"
           cache: "pip"
       - name: Install PyTorch
-        run: pip install torch==${{ matrix.torch-version }}
+        run: pip install ${{ matrix.torch-version }}
       - run: pip install -e ".[dev]"
       - name: Run all tests
         run: pytest
