@@ -1,4 +1,9 @@
-from typing import Iterable, Self
+from typing import Iterable
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 import torch
 
