@@ -13,7 +13,7 @@ class TestSkafteDataset:
         dataset = SkafteDataset(num_samples=num_samples, heteroscedastic=heteroscedastic, x_bounds=x_bounds, seed=seed)
         assert len(dataset) == num_samples
         x, y = dataset[0]
-        assert x.shape == y.shape == torch.Size([])
+        assert x.shape == y.shape == torch.Size([1])
 
         # Assert all x values are within bounds
         assert (x >= x_bounds[0]).all()
