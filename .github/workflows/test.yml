@@ -23,7 +23,7 @@ jobs:
       - name: Install PyTorch
         run: pip install ${{ matrix.torch-version }}
       - name: Install package
-        run: pip install -e ".[dev]"
+        run: pip install ".[dev]"
       - name: Run tests (excluding slow tests)
         run: pytest -k "not slow"
 
@@ -42,6 +42,6 @@ jobs:
           cache: "pip"
       - name: Install PyTorch
         run: pip install ${{ matrix.torch-version }}
-      - run: pip install -e ".[dev]"
+      - run: pip install ".[dev]"
       - name: Run all tests
         run: pytest

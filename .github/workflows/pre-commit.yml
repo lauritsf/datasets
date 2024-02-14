@@ -16,6 +16,6 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - run: pip install -e ".[dev]"
+      - run: pip install ".[dev]"
       - name: Run pre-commit checks
         uses: pre-commit/action@v3.0.1
