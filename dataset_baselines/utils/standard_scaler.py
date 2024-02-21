@@ -88,7 +88,7 @@ class StandardScaler:
         scaled_std = std / (self.std + self.epsilon)
         return scaled_std
 
-    def fit_transform(self, data: torch.Tensor) -> torch.Tensor | tuple[torch.Tensor, torch.Tensor]:
+    def fit_transform(self, data: torch.Tensor) -> torch.Tensor:
         self.fit(data)
         return self.transform(data)
 
