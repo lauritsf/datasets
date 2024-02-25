@@ -22,7 +22,7 @@ class SkafteDataset(Dataset):
             generator.manual_seed(seed)
 
         self.x = torch.rand(self.num_samples, generator=generator) * (x_bounds[1] - x_bounds[0]) + x_bounds[0]
-        self.noise = torch.randn_like(self.x) * self.scale_function(self.x)
+        self.noise = torch.randn(self.x.shape, generator=generator) * self.scale_function(self.x)
         self.y = self.target_function(self.x) + self.noise
 
     @classmethod

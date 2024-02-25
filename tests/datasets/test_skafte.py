@@ -22,3 +22,9 @@ class TestSkafteDataset:
     def test_x_bounds(self):
         with pytest.raises(ValueError):
             SkafteDataset(x_bounds=(0, 1, 2))
+
+    def test_reproducibility(self):
+        dataset1 = SkafteDataset(num_samples=100, seed=0)
+        dataset2 = SkafteDataset(num_samples=100, seed=0)
+        assert torch.allclose(dataset1.x, dataset2.x), "X values are not equal"
+        assert torch.allclose(dataset1.y, dataset2.y), "Y values are not equal"
