@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "dataset_baselines"
-version = "0.2.4"
+version = "0.2.5"
 description = "Benchmark datasets and experiments"
 licence = "MIT"
 authors = [
