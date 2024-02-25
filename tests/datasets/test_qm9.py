@@ -19,7 +19,7 @@ def test_get_target_stats(target):
 
 @pytest.mark.slow
 @pytest.mark.parametrize("target", range(19))
-def test_datamoudle_dataloaders(target):
+def test_datamodule_dataloaders(target):
     dm = QM9DataModule(target=target)
     dm.prepare_data()
     dm.setup()
